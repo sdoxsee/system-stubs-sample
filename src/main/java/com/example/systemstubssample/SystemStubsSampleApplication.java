@@ -1,6 +1,5 @@
 package com.example.systemstubssample;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +19,9 @@ class SampleController {
 
 	private final String originalValue;
 
-	public SampleController(@Value("${SOME_KEY}") String originalValue) {
-		this.originalValue = originalValue;
+	public SampleController() {
+		// as part of applicationContext initialization
+		this.originalValue = System.getenv("SOME_KEY");
 	}
 
 	@GetMapping("/")
